@@ -2,6 +2,8 @@
 
 Um bot autônomo para o Telegram focado no monitoramento, tradução e disparo automatizado de notícias sobre geopolítica global e tensões internacionais.
 
+Um microserviço autônomo desenvolvido em Vanilla Java, projetado para monitorar APIs de notícias internacionais e rastrear atualizações sobre tensões geopolíticas globais — com foco em regiões estratégicas como o Ártico, Taiwan e China. O sistema conta com um motor interno de tradução para o português, validação de duplicidade via PostgreSQL e disparo programado de alertas diretamente no Telegram, operando com baixo consumo de memória e alta resiliência.
+
 ## 🚀 Objetivo do Projeto
 O sistema busca dados em APIs internacionais focadas em palavras-chave específicas (ex: tensões na Ásia, Ártico, política externa dos EUA), traduz os títulos e resumos do inglês para o português e dispara alertas diretos no Telegram, mantendo um rigoroso controle contra spam e repetição de notícias.
 
