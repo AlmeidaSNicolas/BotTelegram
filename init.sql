@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS noticias_enviadas (
+    id SERIAL PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    url_original TEXT UNIQUE NOT NULL,
+    data_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
