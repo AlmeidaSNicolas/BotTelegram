@@ -1,30 +1,43 @@
-# 🌍 Geopolitics Telegram Bot (WIP)
+🌍 Geopolitics Telegram Bot (WIP)
 
-Um bot autônomo para o Telegram focado no monitoramento, tradução e disparo automatizado de notícias sobre geopolítica global e tensões internacionais.
+An autonomous Telegram bot focused on monitoring, translating, and automatically broadcasting news about global geopolitics and international tensions.
 
-Um microserviço autônomo desenvolvido em Vanilla Java, projetado para monitorar APIs de notícias internacionais e rastrear atualizações sobre tensões geopolíticas globais — com foco em regiões estratégicas como o Ártico, Taiwan e China. O sistema conta com um motor interno de tradução para o português, validação de duplicidade via PostgreSQL e disparo programado de alertas diretamente no Telegram, operando com baixo consumo de memória e alta resiliência.
+An autonomous microservice developed in Vanilla Java, designed to monitor international news APIs and track updates on global geopolitical tensions — focusing on strategic regions such as the Arctic, Taiwan, and China. The system features an internal translation engine to Portuguese, duplication validation via PostgreSQL, and scheduled alert broadcasting directly to Telegram, operating with low memory consumption and high resilience.
 
-## 🚀 Objetivo do Projeto
-O sistema busca dados em APIs internacionais focadas em palavras-chave específicas (ex: tensões na Ásia, Ártico, política externa dos EUA), traduz os títulos e resumos do inglês para o português e dispara alertas diretos no Telegram, mantendo um rigoroso controle contra spam e repetição de notícias.
+🚀 Project Objective
 
-## 🛠️ Tecnologias Utilizadas
-*   **Linguagem:** Java (Vanilla) - *Construído sem frameworks robustos como Spring para maximizar performance e baixo consumo de memória.*
-*   **Banco de Dados:** PostgreSQL
-*   **Infraestrutura:** Docker (Containerização do BD)
-*   **Integrações:**
-    *   Telegram Bot API
-    *   API REST de Notícias
-    *   API REST de Tradução
+The system fetches data from international APIs focused on specific keywords (e.g., tensions in Asia, the Arctic, US foreign policy), translates titles and summaries from English to Portuguese, and sends direct alerts on Telegram, maintaining strict control against spam and news repetition.
 
-## ⚙️ Arquitetura e Regras de Negócio (MVP)
-O sistema foi projetado para rodar de forma autônoma 24/7 com foco em resiliência:
-*   **Cron Job Interno:** Rotinas de busca executadas nativamente a cada 2 horas utilizando `ScheduledExecutorService`.
-*   **Prevenção de Duplicidade Absoluta:** Validação de estado feita diretamente na camada de dados (Constraints UNIQUE no PostgreSQL) para impedir o reenvio de URLs já registradas.
-*   **Controle de Rate Limit:** Limite rígido de 10 mensagens processadas por dia para garantir alta curadoria do feed.
-*   **Tratamento de Exceções:** Sistema preparado para suportar quedas de rede e timeouts nas APIs de terceiros sem interromper o ciclo de vida da aplicação.
+🛠️ Technologies Used
 
-## 🗄️ Estrutura e Instalação
-*Instruções de setup, variáveis de ambiente e deploy serão adicionadas em breve conforme o avanço do desenvolvimento.*
+Language: Java (Vanilla) - Built without robust frameworks like Spring to maximize performance and maintain low memory consumption.
 
----
-*Desenvolvido como projeto de consolidação em Arquitetura de Software e Java Backend.*
+Database: PostgreSQL
+
+Infrastructure: Docker (DB Containerization)
+
+Integrations:
+
+Telegram Bot API
+
+News REST API
+
+Translation REST API
+
+⚙️ Architecture and Business Rules (MVP)
+
+The system was designed to run autonomously 24/7 with a focus on resilience:
+
+Internal Cron Job: Fetching routines executed natively every 2 hours using ScheduledExecutorService.
+
+Absolute Duplication Prevention: State validation performed directly at the data layer (UNIQUE constraints in PostgreSQL) to prevent resending already registered URLs.
+
+Rate Limit Control: Strict limit of 10 messages processed per day to ensure high feed curation.
+
+Exception Handling: System prepared to withstand network drops and third-party API timeouts without interrupting the application's lifecycle.
+
+🗄️ Structure and Installation
+
+Setup instructions, environment variables, and deployment guides will be added soon as development progresses.
+
+Developed as a consolidation project in Software Architecture and Java Backend.
