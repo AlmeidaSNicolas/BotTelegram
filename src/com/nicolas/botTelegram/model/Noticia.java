@@ -5,28 +5,22 @@ public class Noticia {
     private String resumo;
     private String url;
 
-    public void setTitulo(String titulo) {
+
+    public Noticia(String titulo, String resumo, String url){
         this.titulo = titulo;
-    }
-
-    public void setResumo(String resumo){
         this.resumo = resumo;
-    }
-
-    public void setUrl(String url){
         this.url = url;
     }
 
-    public String getTitulo(){
-        return this.titulo;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public String getResumo(){
-        return this.resumo;
+    public String getResumo() {
+        return resumo;
     }
 
-    public String getUrl(){
-        return this.url;
+    public String getUrl() {
+        return url;
     }
-
 }
