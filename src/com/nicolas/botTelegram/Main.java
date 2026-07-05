@@ -1,8 +1,10 @@
 package com.nicolas.botTelegram;
 
+import com.nicolas.botTelegram.botOrchestrator.BotOrchestrator;
 import com.nicolas.botTelegram.model.Noticia;
 import com.nicolas.botTelegram.service.NewsService;
 import com.nicolas.botTelegram.service.TelegramService;
+import com.nicolas.botTelegram.service.TranslationService;
 
 import java.util.ArrayList;
 
@@ -14,14 +16,11 @@ public class Main {
         // 1. Instanciando os serviços independentes
         NewsService newsService = new NewsService();
         TelegramService telegramService = new TelegramService();
+        TranslationService translationService = new TranslationService();
+        BotOrchestrator botOrchestrator = new BotOrchestrator(newsService, telegramService, translationService);
 
-        // 2. Acionando a busca (retorna o ArrayList mockado em inglês)
-        ArrayList<Noticia> listaDeNoticias = newsService.buscarNoticias("war");
+        botOrchestrator.executarCiclo("Brazil");
 
-        // 3. Laço de repetição percorrendo cada notícia recebida
-        for (Noticia noticiaAtual : listaDeNoticias) {
-            telegramService.EnviarNoticia(noticiaAtual);
-        }
 
     }
 }
