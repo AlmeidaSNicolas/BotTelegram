@@ -19,21 +19,21 @@ The system is organized in clearly separated layers, each with a single responsi
 ```
 src/com/nicolas/botTelegram/
 ├── model/
-│   └── Noticia.java          # Immutable domain object (title, summary, url)
+│   └── Noticia.java             # Immutable domain object (title, summary, url)
 ├── service/
-│   ├── NewsService.java      # HTTP fetch from NewsAPI.org via OkHttp
+│   ├── NewsService.java         # HTTP fetch from NewsAPI.org via OkHttp
 │   ├── TranslationService.java  # EN → PT translation via DeepL API
-│   └── TelegramService.java  # Message formatting and delivery
+│   └── TelegramService.java     # Message formatting and delivery
 ├── orchestrator/
-│   └── BotOrchestrator.java  # Coordinates the full fetch → translate → send cycle
+│   └── BotOrchestrator.java     # Coordinates the full fetch → translate → send cycle
 ├── repository/
 │   └── NoticiaRepository.java   # JDBC persistence + URL deduplication (coming soon)
 └── config/
-    └── AppConfig.java        # Centralized config via environment variables
+    └── AppConfig.java           # Centralized config via environment variables
 ```
 
 **Key architectural decisions:**
-- `Noticia` is immutable — full constructor, no setters, fields are final
+- `Noticia` is immutable — full constructor, no setters
 - `BotOrchestrator` owns the orchestration loop — services are single-responsibility
 - `AppConfig` reads all secrets from environment variables — nothing hardcoded
 - `try-catch` in the orchestrator absorbs network failures without crashing the bot
@@ -47,7 +47,7 @@ src/com/nicolas/botTelegram/
 | Language | Java 17 (Vanilla, no Spring) |
 | Build Tool | Maven |
 | Database | PostgreSQL |
-| Infrastructure | Docker |
+| Infrastructure | Docker *(containerization — to be configured)* |
 | HTTP Client | OkHttp 5.4.0 |
 | JSON Parsing | Gson 2.14.0 |
 | News Source | NewsAPI.org |
@@ -80,6 +80,7 @@ src/com/nicolas/botTelegram/
 - [ ] DeepL API integration
 - [ ] Telegram Bot API integration
 - [ ] `ScheduledExecutorService` — automated 2h cycle
+- [ ] Docker — containerization setup
 
 ---
 
@@ -88,7 +89,7 @@ src/com/nicolas/botTelegram/
 ### Prerequisites
 - Java 17+
 - Maven
-- Docker (for PostgreSQL)
+- PostgreSQL
 
 ### Environment Variables
 
@@ -104,20 +105,16 @@ DEEPL_API_KEY=your_deepl_key_here
 ### Running
 
 ```bash
-# Start PostgreSQL via Docker
-docker-compose up -d
-
-# Build and run
 mvn compile exec:java -Dexec.mainClass="com.nicolas.botTelegram.Main"
 ```
 
-> Full setup guide and Docker Compose file will be added as the project approaches MVP.
+> Docker Compose and full deployment guide will be added in a future sprint.
 
 ---
 
 ## 📌 Development Workflow
 
-Each feature sprint is developed in a separate Git branch, simulating real team workflows. Branch naming follows the pattern `SprintName` (e.g., `OrquestratorSprint`, `CrclassesBot`).
+Each feature sprint is developed in a separate Git branch, simulating real team workflows.
 
 ---
 
