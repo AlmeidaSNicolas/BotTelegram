@@ -1,43 +1,124 @@
-🌍 Geopolitics Telegram Bot (WIP)
+# 🌍 Geopolitics Telegram Bot
 
-An autonomous Telegram bot focused on monitoring, translating, and automatically broadcasting news about global geopolitics and international tensions.
+> Autonomous bot in Vanilla Java for monitoring, translating, and broadcasting geopolitical news directly to Telegram.
 
-An autonomous microservice developed in Vanilla Java, designed to monitor international news APIs and track updates on global geopolitical tensions — focusing on strategic regions such as the Arctic, Taiwan, and China. The system features an internal translation engine to Portuguese, duplication validation via PostgreSQL, and scheduled alert broadcasting directly to Telegram, operating with low memory consumption and high resilience.
+**Status:** Work in Progress — actively developed in public sprints.
 
-🚀 Project Objective
+---
 
-The system fetches data from international APIs focused on specific keywords (e.g., tensions in Asia, the Arctic, US foreign policy), translates titles and summaries from English to Portuguese, and sends direct alerts on Telegram, maintaining strict control against spam and news repetition.
+## 🎯 What it does
 
-🛠️ Technologies Used
+Fetches real-time news from international sources filtered by geopolitical keywords (Arctic, Taiwan, China, global tensions), translates titles and summaries from English to Portuguese, and delivers curated alerts directly to a Telegram channel — running autonomously every 2 hours with built-in deduplication and resilience.
 
-Language: Java (Vanilla) - Built without robust frameworks like Spring to maximize performance and maintain low memory consumption.
+---
 
-Database: PostgreSQL
+## 🏗️ Architecture
 
-Infrastructure: Docker (DB Containerization)
+The system is organized in clearly separated layers, each with a single responsibility:
 
-Integrations:
+```
+src/com/nicolas/botTelegram/
+├── model/
+│   └── Noticia.java          # Immutable domain object (title, summary, url)
+├── service/
+│   ├── NewsService.java      # HTTP fetch from NewsAPI.org via OkHttp
+│   ├── TranslationService.java  # EN → PT translation via DeepL API
+│   └── TelegramService.java  # Message formatting and delivery
+├── orchestrator/
+│   └── BotOrchestrator.java  # Coordinates the full fetch → translate → send cycle
+├── repository/
+│   └── NoticiaRepository.java   # JDBC persistence + URL deduplication (coming soon)
+└── config/
+    └── AppConfig.java        # Centralized config via environment variables
+```
 
-Telegram Bot API
+**Key architectural decisions:**
+- `Noticia` is immutable — full constructor, no setters, fields are final
+- `BotOrchestrator` owns the orchestration loop — services are single-responsibility
+- `AppConfig` reads all secrets from environment variables — nothing hardcoded
+- `try-catch` in the orchestrator absorbs network failures without crashing the bot
 
-News REST API
+---
 
-Translation REST API
+## 🛠️ Tech Stack
 
-⚙️ Architecture and Business Rules (MVP)
+| Layer | Technology |
+|---|---|
+| Language | Java 17 (Vanilla, no Spring) |
+| Build Tool | Maven |
+| Database | PostgreSQL |
+| Infrastructure | Docker |
+| HTTP Client | OkHttp 5.4.0 |
+| JSON Parsing | Gson 2.14.0 |
+| News Source | NewsAPI.org |
+| Translation | DeepL Free Tier |
+| Delivery | Telegram Bot API |
 
-The system was designed to run autonomously 24/7 with a focus on resilience:
+---
 
-Internal Cron Job: Fetching routines executed natively every 2 hours using ScheduledExecutorService.
+## ⚙️ Business Rules
 
-Absolute Duplication Prevention: State validation performed directly at the data layer (UNIQUE constraints in PostgreSQL) to prevent resending already registered URLs.
+- **Cron cycle:** fetch runs every 2 hours via `ScheduledExecutorService`
+- **Deduplication:** UNIQUE constraint on URL at the database layer — no duplicate alerts
+- **Rate limit:** max 20 messages per day for curated, high-quality delivery
+- **Resilience:** network failures and API timeouts are caught and logged — the bot stays alive for the next cycle
+- **Language:** all news fetched in English (`language=en`), translated to Portuguese before delivery
 
-Rate Limit Control: Strict limit of 10 messages processed per day to ensure high feed curation.
+---
 
-Exception Handling: System prepared to withstand network drops and third-party API timeouts without interrupting the application's lifecycle.
+## 🚀 Current Sprint Progress
 
-🗄️ Structure and Installation
+- [x] Domain model (`Noticia` — immutable)
+- [x] `NewsService` — real HTTP call to NewsAPI.org
+- [x] `TranslationService` — mock (DeepL integration next)
+- [x] `TelegramService` — mock (Bot API integration next)
+- [x] `BotOrchestrator` — full cycle running in terminal
+- [x] `AppConfig` — environment variables, `.env` protected by `.gitignore`
+- [x] Maven — OkHttp, Gson, PostgreSQL JDBC driver configured
+- [ ] JSON parsing with Gson → `Noticia` objects
+- [ ] `NoticiaRepository` — JDBC + deduplication
+- [ ] DeepL API integration
+- [ ] Telegram Bot API integration
+- [ ] `ScheduledExecutorService` — automated 2h cycle
 
-Setup instructions, environment variables, and deployment guides will be added soon as development progresses.
+---
 
-Developed as a consolidation project in Software Architecture and Java Backend.
+## 🔧 Setup
+
+### Prerequisites
+- Java 17+
+- Maven
+- Docker (for PostgreSQL)
+
+### Environment Variables
+
+Create a `.env` file in the project root (never commit this file):
+
+```
+TELEGRAM_BOT_TOKEN=your_token_here
+TELEGRAM_CHAT_ID=your_chat_id_here
+NEWS_API_KEY=your_newsapi_key_here
+DEEPL_API_KEY=your_deepl_key_here
+```
+
+### Running
+
+```bash
+# Start PostgreSQL via Docker
+docker-compose up -d
+
+# Build and run
+mvn compile exec:java -Dexec.mainClass="com.nicolas.botTelegram.Main"
+```
+
+> Full setup guide and Docker Compose file will be added as the project approaches MVP.
+
+---
+
+## 📌 Development Workflow
+
+Each feature sprint is developed in a separate Git branch, simulating real team workflows. Branch naming follows the pattern `SprintName` (e.g., `OrquestratorSprint`, `CrclassesBot`).
+
+---
+
+*Developed as a consolidation project in Software Architecture and Java Backend — 4th semester, Software Engineering.*
