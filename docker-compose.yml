@@ -4,9 +4,9 @@ services:
     container_name: postgres_db
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}         # Usuário do banco
+      POSTGRES_USER: ${DB_USER}         # Usuário do banco
       POSTGRES_PASSWORD: ${DB_PASSWORD} # Senha do banco
-      POSTGRES_DB: ${POSTGRES_DB}       # Nome do banco inicial
+      POSTGRES_DB: bancoBotTelegram       # Nome do banco inicial
     ports:
       - "5432:5432"                 # Porta local:porta do container
     volumes:
