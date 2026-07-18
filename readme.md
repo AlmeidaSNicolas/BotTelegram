@@ -75,8 +75,8 @@ src/com/nicolas/botTelegram/
 - [x] `BotOrchestrator` — full cycle running in terminal
 - [x] `AppConfig` — environment variables, `.env` protected by `.gitignore`
 - [x] Maven — OkHttp, Gson, PostgreSQL JDBC driver configured
-- [ ] JSON parsing with Gson → `Noticia` objects
-- [ ] `NoticiaRepository` — JDBC + deduplication
+- [x] JSON parsing with Gson → `Noticia` objects
+- [x] `NoticiaRepository` — JDBC + deduplication
 - [ ] DeepL API integration
 - [ ] Telegram Bot API integration
 - [ ] `ScheduledExecutorService` — automated 2h cycle

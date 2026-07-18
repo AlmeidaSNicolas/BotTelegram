@@ -1,0 +1,18 @@
+services:
+  db:
+    image: postgres:16
+    container_name: postgres_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: Nicolas         # Usuário do banco
+      POSTGRES_PASSWORD: 101105 # Senha do banco
+      POSTGRES_DB: bancoBotTelegram       # Nome do banco inicial
+    ports:
+      - "5432:5432"                 # Porta local:porta do container
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db_data:/var/lib/postgresql/data  # Persistência dos dados
+
+volumes:
+  db_data:
+    driver: local
