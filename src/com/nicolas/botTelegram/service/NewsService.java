@@ -12,18 +12,26 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class NewsService {
-    public ArrayList<Noticia> buscarNoticias(String keyword) throws Exception {
 
-        String url = "https://newsapi.org/v2/everything?q=" + keyword +"&language=en&pageSize=5&apikey=" + AppConfig.NEWS_API_KEY;
+    public ArrayList<Noticia> buscarNoticias(String keyword) throws Exception{
+        String url = montarUrl(keyword);
 
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient httpClient = new OkHttpClient();
         Request request = new Request.Builder().url(url).build();
-        Response response = client.newCall(request).execute();
-
+        Response response = httpClient.newCall(request).execute();
         String json = response.body().string();
+
+        return parsearResposta(json);
+    }
+
+    private String montarUrl(String keyword) {
+        String url = "https://newsapi.org/v2/everything?q=" + keyword +"&language=en&pageSize=5&apikey=" + AppConfig.NEWS_API_KEY;
+        return url;
+    }
+
+     private ArrayList<Noticia> parsearResposta(String json){
         Gson gson = new Gson();
 
-        //Guardando retorno do metodo na variavel "Noticia"
         NewsAPIResponseDTO newsAPIResponseDTO = gson.fromJson(json, NewsAPIResponseDTO.class);
 
         ArrayList<Noticia> noticias = new ArrayList<>();
@@ -34,7 +42,7 @@ public class NewsService {
         }
 
         return noticias;
-    };
+    }
 
 
 }
