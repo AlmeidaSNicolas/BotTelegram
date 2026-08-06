@@ -2,15 +2,12 @@ package com.nicolas.botTelegram;
 
 import com.nicolas.botTelegram.botOrchestrator.BotOrchestrator;
 import com.nicolas.botTelegram.config.DataBaseConfig;
-import com.nicolas.botTelegram.model.Noticia;
 import com.nicolas.botTelegram.repository.NoticiaRepository;
 import com.nicolas.botTelegram.service.NewsService;
 import com.nicolas.botTelegram.service.TelegramService;
 import com.nicolas.botTelegram.service.TranslationService;
 
 import java.sql.Connection;
-import java.util.ArrayList;
-
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -24,8 +21,7 @@ public class Main {
 
         BotOrchestrator botOrchestrator = new BotOrchestrator(newsService, telegramService, translationService, noticiaRepository);
 
-        botOrchestrator.executarCiclo("China");
-
+        botOrchestrator.executarCiclo("Japan");
 
     }
 }
