@@ -27,7 +27,9 @@ public class BotOrchestrator {
             noticias = newsService.buscarNoticias(keyword);
 
             for(Noticia noticia : noticias){
-                if(!noticiaRepository.jaExiste(noticia.getUrl())){
+                if(noticiaRepository.jaExiste(noticia.getUrl())){
+                    System.out.println(noticia.getTitulo());
+                    System.out.println(noticia.getUrl());
                 }else {
                     Noticia noticiaTraduzida = translationService.traduzirNoticia(noticia);
                     telegramService.enviarNoticia(noticiaTraduzida);

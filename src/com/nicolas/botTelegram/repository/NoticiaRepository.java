@@ -20,7 +20,6 @@ public class NoticiaRepository {
         stmt.setString(1, noticia.getTitulo());
         stmt.setString(2, noticia.getUrl());
         stmt.executeUpdate();
-
     }
 
     public boolean jaExiste(String url) throws Exception{
