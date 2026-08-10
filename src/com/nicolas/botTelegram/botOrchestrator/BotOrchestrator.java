@@ -21,13 +21,14 @@ public class BotOrchestrator {
         this.noticiaRepository = noticiaRepository;
     }
 
-    public void executarCiclo(String keyword){
+    public void executarCiclo(String query){
         try {
             ArrayList<Noticia> noticias;
-            noticias = newsService.buscarNoticias(keyword);
+            noticias = newsService.buscarNoticias(query);
 
             for(Noticia noticia : noticias){
                 if(noticiaRepository.jaExiste(noticia.getUrl())){
+                    System.out.println("Noticias ja existentes no banco de dados: ");
                     System.out.println(noticia.getTitulo());
                     System.out.println(noticia.getUrl());
                 }else {

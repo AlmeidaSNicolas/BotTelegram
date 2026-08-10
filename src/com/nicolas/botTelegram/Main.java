@@ -1,6 +1,7 @@
 package com.nicolas.botTelegram;
 
 import com.nicolas.botTelegram.botOrchestrator.BotOrchestrator;
+import com.nicolas.botTelegram.config.AppConfig;
 import com.nicolas.botTelegram.config.DataBaseConfig;
 import com.nicolas.botTelegram.repository.NoticiaRepository;
 import com.nicolas.botTelegram.service.NewsService;
@@ -21,7 +22,7 @@ public class Main {
 
         BotOrchestrator botOrchestrator = new BotOrchestrator(newsService, telegramService, translationService, noticiaRepository);
 
-        botOrchestrator.executarCiclo("Japan");
+        botOrchestrator.executarCiclo(AppConfig.QUERY_GEOPOLITICA_GUERRA);
 
     }
 }

@@ -6,15 +6,18 @@ import com.nicolas.botTelegram.model.ArticleDTO;
 import com.nicolas.botTelegram.model.NewsAPIResponseDTO;
 import com.nicolas.botTelegram.model.Noticia;
 
+
 import java.util.ArrayList;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 public class NewsService {
 
-    public ArrayList<Noticia> buscarNoticias(String keyword) throws Exception{
-        String url = montarUrl(keyword);
+    public ArrayList<Noticia> buscarNoticias(String query) throws Exception{
+        String url = montarUrl(query);
 
         OkHttpClient httpClient = new OkHttpClient();
         Request request = new Request.Builder().url(url).build();
@@ -24,9 +27,10 @@ public class NewsService {
         return parsearResposta(json);
     }
 
-    private String montarUrl(String keyword) {
-        String url = "https://newsapi.org/v2/everything?q=" + keyword +"&language=en&pageSize=5&apikey=" + AppConfig.NEWS_API_KEY;
-        return url;
+    private String montarUrl(String query) {
+        String encodeQuery = URLEncoder.encode(query, StandardCharsets.UTF_8);
+        String url = "https://newsapi.org/v2/everything?q="+ encodeQuery +"&language=en&pageSize=5&sortBy=relevancy&domains=" + AppConfig.DOMAINS + "&apikey=" + AppConfig.NEWS_API_KEY;
+        return url ;
     }
 
      private ArrayList<Noticia> parsearResposta(String json){
@@ -43,6 +47,4 @@ public class NewsService {
 
         return noticias;
     }
-
-
 }
