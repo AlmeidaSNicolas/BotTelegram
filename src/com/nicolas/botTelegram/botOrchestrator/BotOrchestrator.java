@@ -21,19 +21,18 @@ public class BotOrchestrator {
         this.noticiaRepository = noticiaRepository;
     }
 
-    public void executarCiclo(String query){
+    public void executarCiclo(String query, String categoria){
         try {
             ArrayList<Noticia> noticias;
             noticias = newsService.buscarNoticias(query);
 
             for(Noticia noticia : noticias){
                 if(noticiaRepository.jaExiste(noticia.getUrl())){
-                    System.out.println("Noticias ja existentes no banco de dados: ");
                     System.out.println(noticia.getTitulo());
                     System.out.println(noticia.getUrl());
                 }else {
                     Noticia noticiaTraduzida = translationService.traduzirNoticia(noticia);
-                    telegramService.enviarNoticia(noticiaTraduzida);
+                    telegramService.enviarNoticia(noticiaTraduzida, categoria);
                     noticiaRepository.salvar(noticiaTraduzida);
                 }
             }

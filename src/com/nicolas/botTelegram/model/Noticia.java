@@ -1,6 +1,6 @@
 package com.nicolas.botTelegram.model;
 
-public class Noticia {
+public class Noticia{
     private String titulo;
     private String resumo;
     private String url;

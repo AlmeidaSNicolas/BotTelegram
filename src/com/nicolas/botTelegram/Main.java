@@ -22,7 +22,7 @@ public class Main {
 
         BotOrchestrator botOrchestrator = new BotOrchestrator(newsService, telegramService, translationService, noticiaRepository);
 
-        botOrchestrator.executarCiclo(AppConfig.QUERY_GEOPOLITICA_GUERRA);
+        botOrchestrator.executarCiclo(AppConfig.QUERY_GEOPOLITICA_ECONOMIA, "Economia");
 
     }
 }
