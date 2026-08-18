@@ -9,11 +9,10 @@ public class AppConfig {
     public static final String DB_USER= System.getenv("DB_USER");
     public static final String DB_PASSWORD= System.getenv("DB_PASSWORD");
 
-
-    public static final String QUERY_GEOPOLITICA_GUERRA =
-            "(Iran OR \"United States\" OR Taiwan OR Brazil OR China OR Japan) AND (war OR military OR conflict OR tensions OR defense OR nuclear OR navy OR sovereignty)";
+    public static final String QUERY_GEOPOLITICA_CONFLITO =
+            "(Iran OR \"United States\" OR Taiwan OR Brazil OR China OR Japan OR Colombia OR Russia OR Ukraine) AND (war OR military OR conflict OR nuclear OR navy OR sovereignty)";
     public static final String QUERY_GEOPOLITICA_ECONOMIA =
-            "(Iran OR \"United States\" OR Taiwan OR Brazil OR China OR Japan) AND (economy OR market OR trade OR sanctions OR semiconductors OR tariffs OR exports OR \"supply chain\")";
+            "(Iran OR \"United States\" OR Taiwan OR Brazil OR China OR Japan OR Colombia OR Russia OR Ukraine) AND (economy OR sanctions OR semiconductors OR tariffs OR exports OR \"supply chain\")";
 
     public static final String DOMAINS = ("reuters.com,apnews.com,afp.com,bbc.com,aljazeera.com,dw.com,france24.com,foreignpolicy.com,foreignaffairs.com,thediplomat.com,csis.org,scmp.com,japantimes.co.jp,arctictoday.com");
 

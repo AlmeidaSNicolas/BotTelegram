@@ -30,7 +30,10 @@ public class BotOrchestrator {
                 if(noticiaRepository.jaExiste(noticia.getUrl())){
                     System.out.println(noticia.getTitulo());
                     System.out.println(noticia.getUrl());
-                }else {
+                } else if (noticia.getResumo() == null || noticia.getTitulo() == null) {
+                    System.out.println("Noticia descartada por campo ausente");
+                    System.out.println(noticia.getUrl());
+                } else {
                     Noticia noticiaTraduzida = translationService.traduzirNoticia(noticia);
                     telegramService.enviarNoticia(noticiaTraduzida, categoria);
                     noticiaRepository.salvar(noticiaTraduzida);

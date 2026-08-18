@@ -14,7 +14,7 @@ public class TranslationService {
     public Noticia traduzirNoticia(Noticia noticia) {
 
         String tituloTraduzido =  "[EN]" + noticia.getTitulo();
-        String resumoTraduzido = "[EN] " + noticia.getResumo();
+        String resumoTraduzido = "[EN]" + noticia.getResumo();
 
         try{
             TextResult resultadoTitulo = deepLClient.translateText(noticia.getTitulo(), "en", "PT-BR");

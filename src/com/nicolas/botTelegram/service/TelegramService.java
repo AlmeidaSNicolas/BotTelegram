@@ -13,12 +13,6 @@ import java.nio.charset.StandardCharsets;
 public class TelegramService {
 
     public void enviarNoticia(Noticia noticia, String categoria) throws IOException {
-        System.out.println("----------------------");
-        System.out.println("Recebendo dados da noticia");
-        System.out.println("Titulo : " + noticia.getTitulo());
-        System.out.println("Categoria : " + categoria );
-        System.out.println("Resumo : " + noticia.getResumo());
-        System.out.println("URL : " + noticia.getUrl());
 
         String mensagemMontada = montarMensagem(noticia, categoria);
 
