@@ -139,7 +139,7 @@ Summary translated to Portuguese, two to three lines.
 - [x] **Curation layer** — boolean query, domain whitelist, `sortBy=relevancy`, URL encoding
 - [x] **DeepL API integration** — real EN → PT translation
 - [x] **Telegram Bot API integration** — HTML formatting, live on a public channel
-- [ ] `ScheduledExecutorService` — automated 2h cycle
+- [x] `ScheduledExecutorService` — automated 2h cycle
 - [ ] VPS deployment — the bot currently runs only while the local machine is on
 
 ---
