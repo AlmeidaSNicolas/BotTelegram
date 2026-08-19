@@ -16,7 +16,7 @@ Monitors 14 hand-picked international outlets, filters for genuine geopolitical 
 
 | Tag | Topics |
 |---|---|
-| `[Guerra]` | Armed conflict, military movements, diplomatic tensions, nuclear programs, naval disputes, sovereignty |
+| `[Conflito]` | Armed conflict, military movements, diplomatic tensions, nuclear programs, naval disputes, sovereignty |
 | `[Economia]` | Sanctions, tariffs, trade war, semiconductors, supply chains, strategic exports |
 
 **Regions in focus:** United States, China, Taiwan, Iran, Japan, Brazil.
