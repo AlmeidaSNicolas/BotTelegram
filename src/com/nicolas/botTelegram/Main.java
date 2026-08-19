@@ -4,15 +4,18 @@ import com.nicolas.botTelegram.botOrchestrator.BotOrchestrator;
 import com.nicolas.botTelegram.config.AppConfig;
 import com.nicolas.botTelegram.config.DataBaseConfig;
 import com.nicolas.botTelegram.repository.NoticiaRepository;
+import com.nicolas.botTelegram.scheduler.CicloAgendado;
 import com.nicolas.botTelegram.service.NewsService;
 import com.nicolas.botTelegram.service.TelegramService;
 import com.nicolas.botTelegram.service.TranslationService;
 
 import java.sql.Connection;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-
         // 1. Instanciando os serviços independentes
         NewsService newsService = new NewsService();
         TelegramService telegramService = new TelegramService();
@@ -21,8 +24,15 @@ public class Main {
         NoticiaRepository noticiaRepository = new NoticiaRepository(connection);
 
         BotOrchestrator botOrchestrator = new BotOrchestrator(newsService, telegramService, translationService, noticiaRepository);
+        CicloAgendado cicloAgendado = new CicloAgendado();
 
-        botOrchestrator.executarCiclo(AppConfig.QUERY_GEOPOLITICA_CONFLITO, "Conflito");
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+
+        scheduledExecutorService.scheduleAtFixedRate(() -> cicloAgendado.rodarCiclo(botOrchestrator),
+                0,
+                12,
+                TimeUnit.HOURS
+        );
 
     }
 }
