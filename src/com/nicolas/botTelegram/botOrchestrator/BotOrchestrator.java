@@ -28,6 +28,7 @@ public class BotOrchestrator {
 
             for(Noticia noticia : noticias){
                 if(noticiaRepository.jaExiste(noticia.getUrl())){
+                    System.out.println("Noticias ja existentes no DB");
                     System.out.println(noticia.getTitulo());
                     System.out.println(noticia.getUrl());
                 } else if (noticia.getResumo() == null || noticia.getTitulo() == null) {

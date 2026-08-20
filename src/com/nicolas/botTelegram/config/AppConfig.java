@@ -14,6 +14,5 @@ public class AppConfig {
     public static final String QUERY_GEOPOLITICA_ECONOMIA =
             "(Iran OR \"United States\" OR Taiwan OR Brazil OR China OR Japan OR Colombia OR Russia OR Ukraine) AND (economy OR sanctions OR semiconductors OR tariffs OR exports OR \"supply chain\")";
 
-    public static final String DOMAINS = ("reuters.com,apnews.com,afp.com,bbc.com,aljazeera.com,dw.com,france24.com,foreignpolicy.com,foreignaffairs.com,thediplomat.com,csis.org,scmp.com,japantimes.co.jp,arctictoday.com");
-
+    public static final String DOMAINS = ("reuters.com,apnews.com,afp.com,bbc.com,aljazeera.com,dw.com,france24.com,foreignpolicy.com,foreignaffairs.com,thediplomat.com,csis.org,scmp.com,japantimes.co.jp,arctictoday.com,euronews.com,warontherocks.com");
 }

@@ -29,7 +29,8 @@ public class NewsService {
 
     private String montarUrl(String query) {
         String encodeQuery = URLEncoder.encode(query, StandardCharsets.UTF_8);
-        String url = "https://newsapi.org/v2/everything?q="+ encodeQuery +"&language=en&pageSize=8&sortBy=relevancy&searchIn=title,description&domains=" + AppConfig.DOMAINS + "&apikey=" + AppConfig.NEWS_API_KEY;
+        String url = "https://newsapi.org/v2/everything?q="+ encodeQuery +"&language=en&pageSize=20&sortBy=relevancy&searchIn=title,description&domains=" + AppConfig.DOMAINS + "&apikey=" + AppConfig.NEWS_API_KEY;
+        System.out.println(url);
         return url ;
     }
 
