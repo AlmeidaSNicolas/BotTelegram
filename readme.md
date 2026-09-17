@@ -115,7 +115,7 @@ Three mechanisms fixed it:
 Messages are sent with `parse_mode=HTML` and link previews disabled, for a minimal mobile-first feed:
 
 ```
-[Guerra]
+[Conflito]
 
 <b>US launches strikes on Iran after attempted attack on troops</b>
 
