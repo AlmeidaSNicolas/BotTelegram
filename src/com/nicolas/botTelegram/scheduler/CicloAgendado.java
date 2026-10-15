@@ -8,7 +8,7 @@ public class CicloAgendado {
 
     public void rodarCiclo(BotOrchestrator botOrchestrator) throws FalhaNaRedeException {
         try{
-            botOrchestrator.executarCiclo(AppConfig.QUERY_GEOPOLITICA_CONFLITO, "Confilto");
+            botOrchestrator.executarCiclo(AppConfig.QUERY_GEOPOLITICA_CONFLITO, "Conflito");
             botOrchestrator.executarCiclo(AppConfig.QUERY_GEOPOLITICA_ECONOMIA, "Economia");
 
         } catch (FalhaNaRedeException e) {
