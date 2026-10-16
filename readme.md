@@ -2,7 +2,7 @@
 
 > Autonomous bot in Vanilla Java for monitoring, curating, translating, and broadcasting geopolitical news directly to Telegram.
 
-**Status:** Live on Telegram — [t.me/geopoliticaNews](https://t.me/geopoliticaNews)
+**Status:** Live on Telegram — [t.me/geopoliticaNews]([https://t.me/geopoliticaNews](https://t.me/geopoliticaNews))
 
 Actively developed in public sprints.
 
